@@ -1,0 +1,33 @@
+import { Component, OnInit } from '@angular/core';
+import { PokemonService } from '../services/pokemon.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.page.html',
+})
+export class HomePage implements OnInit {
+  pokemons: any[] = [];
+  offset = 0;
+
+  constructor(private pokeService: PokemonService, private router: Router) {}
+
+  ngOnInit() {
+    this.loadPokemons();
+  }
+
+  loadPokemons() {
+    this.pokeService.getPokemonList(this.offset).subscribe((data) => {
+      this.pokemons = [...this.pokemons, ...data.results];
+    });
+  }
+
+  viewDetails(name: string) {
+    this.router.navigate(['/details', name]);
+  }
+
+  loadMore() {
+    this.offset += 20;
+    this.loadPokemons();
+  }
+}
