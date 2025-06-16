@@ -1,0 +1,2 @@
+# PokeCrud
+CRUD usando PokeAPI
