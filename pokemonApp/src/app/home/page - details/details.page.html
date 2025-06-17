@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pokemon?.name | titlecase }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="pokemon">
+  <ion-card>
+    <ion-img [src]="pokemon.sprites?.front_default"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
+      <ion-card-subtitle>ID: {{ pokemon.id }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Altura:</strong> {{ pokemon.height / 10 }} m</p>
+      <p><strong>Peso:</strong> {{ pokemon.weight / 10 }} kg</p>
+      <p><strong>Tipos:</strong> {{ typeList }}</p>
+      <p><strong>Habilidades:</strong> {{ abilityList }}</p>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
